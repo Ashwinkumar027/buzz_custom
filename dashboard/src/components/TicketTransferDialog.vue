@@ -37,19 +37,7 @@
 				/>
 			</div>
 		</template>
-		<template #actions="{ close }">
-			<div class="flex gap-2">
-				<Button
-					variant="solid"
-					@click="handleTransferTicket"
-					:loading="transferResource.loading"
-					:disabled="!transferForm.first_name || !transferForm.email"
-				>
-					{{ __("Transfer Ticket") }}
-				</Button>
-				<Button variant="outline" @click="close"> {{ __("Cancel") }} </Button>
-			</div>
-		</template>
+		<template #actions="{ close }"></template>
 	</Dialog>
 </template>
 

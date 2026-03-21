@@ -76,11 +76,14 @@
 		/>
 
 		<!-- Ticket Transfer Dialog -->
+		<!-- Transfer dialog disabled -->
+		<!--
 		<TicketTransferDialog
 			v-model="showTransferDialog"
 			:ticket="ticket"
 			@success="onTicketTransferSuccess"
 		/>
+		-->
 
 		<!-- Add-on Preference Dialog -->
 		<AddOnPreferenceDialog
@@ -145,15 +148,15 @@ const ticketActions = computed(() => {
 	}
 
 	// Only show transfer action if transfers are allowed
-	if (props.canTransfer) {
-		actions.push({
-			label: __("Transfer Ticket"),
-			icon: LucideUserPen,
-			onClick: () => {
-				showTransferDialog.value = true;
-			},
-		});
-	}
+	//if (props.canTransfer) {
+	//	actions.push({
+	//		label: __("Transfer Ticket"),
+	//		icon: LucideUserPen,
+	//		onClick: () => {
+	//			showTransferDialog.value = true;
+	//		},
+	//	});
+	//}
 
 	// Only show preference action if add-on changes are allowed and ticket has customizable add-ons
 	if (props.canChangeAddOns && hasCustomizableAddOns.value) {

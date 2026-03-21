@@ -151,58 +151,129 @@
 		url("Inter-BlackItalic.woff?v=3.12") format("woff");
 }
 /* Fix intl-tel-input to match Frappe UI */
+/* ===============================
+   INTL TEL INPUT FULL FIX
+================================= */
+
+/* Container */
 .iti {
   width: 100%;
 }
 
+/* ===============================
+   INPUT FIELD
+================================= */
 .iti input {
   width: 100%;
-  height: 32px;
-  padding-left: 75px !important;
+  height: 34px;
+  padding-left: 85px !important;
   border-radius: 8px;
   border: 1px solid #d1d5db;
   background: #f9fafb;
   font-size: 14px;
-  text-indent:0px;
+  color: #111827;
+  transition: all 0.2s ease;
 }
 
-/* Focus style */
-.iti input:focus {
-  outline: none;
-  border-color: #92929c;
-  background: #fff;
-}
-
-/* Flag dropdown */
-.iti__flag {
-  transform: scale(0.8); 
-}
-.iti__flag-container {
-left:10px;
-}
-.iti__selected-dial-code {
-  font-size: 13px;
-  margin-left: 4px;
-  
-  
-}
+/* Placeholder */
 .iti input::placeholder {
   color: #9ca3af;
-  opacity: 1;
 }
-.iti__selected-dial-code {
-  font-size: 12px;
-  padding-left: 2px;
-  padding-right: 2px;
+
+/* Focus - LIGHT */
+.iti input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: #ffffff;
 }
-.iti input {
-  width: 100%;
-  padding-left: 90px !important; /* space for flag + code */
+
+/* ===============================
+   FLAG + COUNTRY CODE
+================================= */
+
+/* Container */
+.iti__flag-container {
+  left: 8px;
 }
+
+/* Flag box */
 .iti__selected-flag {
   padding: 4px 6px !important;
+  border-radius: 6px;
   gap: 4px;
+  background: transparent;
 }
+
+/* Flag size */
+.iti__flag {
+  transform: scale(0.75);
+}
+
+/* Country code */
+.iti__selected-dial-code {
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+/* Dropdown arrow */
 .iti__arrow {
   transform: scale(0.7);
+  margin-left: 2px;
+}
+
+/* ===============================
+   COUNTRY DROPDOWN
+================================= */
+
+.iti__country-list {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+/* Hover */
+.iti__country:hover {
+  background-color: #f3f4f6;
+}
+
+/* ===============================
+   DARK MODE FIX (VERY IMPORTANT)
+================================= */
+
+/* INPUT */
+.dark .iti input {
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+  border-color: #374151 !important;
+}
+
+/* INPUT FOCUS */
+.dark .iti input:focus {
+  background-color: #1f2937 !important;
+  border-color: #60a5fa !important;
+}
+
+/* FLAG BOX */
+.dark .iti__selected-flag {
+  background-color: #1f2937 !important;
+  color: #ffffff;
+  border-right: 1px solid #374151;
+}
+
+/* DROPDOWN */
+.dark .iti__country-list {
+  background-color: #1f2937 !important;
+  color: #ffffff;
+  border-color: #374151;
+}
+
+/* DROPDOWN HOVER */
+.dark .iti__country:hover {
+  background-color: #374151 !important;
+}
+
+/* PLACEHOLDER DARK */
+.dark .iti input::placeholder {
+  color: #9ca3af;
 }

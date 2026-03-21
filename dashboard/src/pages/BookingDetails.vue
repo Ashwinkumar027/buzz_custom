@@ -85,10 +85,10 @@
 
 		<!-- Cancellation Request Section -->
 		<!-- Only show if there's a pending cancellation request (not yet submitted/accepted) -->
-		<CancellationRequestNotice
+		<!-- <CancellationRequestNotice
 			v-if="!bookingDetails.data.event.free_webinar && hasPendingCancellationRequest"
 			:cancellation-request="bookingDetails.data.cancellation_request"
-		/>
+		/> -->
 
 		<!-- Tickets Section -->
 		<TicketsSection

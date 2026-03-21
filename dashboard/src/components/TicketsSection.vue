@@ -83,12 +83,7 @@ const hasTicketsAvailableForCancellation = computed(() => {
 // Show cancellation button if:
 // 1. Cancellation is allowed
 // 2. Either there's no existing request OR there are still tickets available for cancellation
-const showCancellationButton = computed(() => {
-	return (
-		props.canRequestCancellation &&
-		(!props.cancellationRequest || hasTicketsAvailableForCancellation.value)
-	);
-});
+const showCancellationButton = computed(() => false);
 
 const isCancellationRequestedTicket = (ticketId) => {
 	return props.cancellationRequestedTickets?.includes(ticketId) || false;
