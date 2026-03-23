@@ -12,6 +12,7 @@ from frappe.utils import days_diff, format_date, format_time, today, validate_em
 
 from buzz.payments import get_payment_gateways_for_event, get_payment_link_for_booking
 from buzz.utils import is_app_installed
+from frappe.core.doctype.sms_settings.sms_settings import send_sms
 
 OFFLINE_PAYMENT_METHOD = "Offline"
 
@@ -353,7 +354,17 @@ def get_event_booking_data(event_route: str) -> dict:
 	data.offline_methods = offline_methods
 
 	return data
+def send_booking_sms(doc, method):
+    for attendee in doc.attendees:
+        mobile = attendee.mobile
 
+        if mobile:
+            message = "Dear Executive, You have received a call from XYZ WDMRKT"
+
+            send_sms(
+                receiver_list=[mobile],
+                msg=message
+            )
 @frappe.whitelist(allow_guest=True)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method
 def process_booking(
 	attendees: list[dict],

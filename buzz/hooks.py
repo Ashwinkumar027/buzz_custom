@@ -33,12 +33,15 @@ before_tests = "buzz.install.before_tests"
 
 
 doc_events = {
-	"User": {
-		"after_insert": "buzz.utils.add_buzz_user_role",
-		"on_update": "buzz.events.doctype.speaker_profile.speaker_profile.update_speaker_display_name",
-	},
-}
+    "User": {
+        "after_insert": "buzz.utils.add_buzz_user_role",
+        "on_update": "buzz.events.doctype.speaker_profile.speaker_profile.update_speaker_display_name",
+    },
 
+    "Event Booking": {
+        "after_insert": "buzz.api.send_booking_sms"
+    }
+}
 fixtures = [{"dt": "Role", "filters": {"name": ["in", ["Buzz User", "Frontdesk Manager"]]}}]
 
 user_invitation = {"allowed_roles": {"Event Manager": ["Buzz User"], "Buzz User": ["Buzz User"]}}
