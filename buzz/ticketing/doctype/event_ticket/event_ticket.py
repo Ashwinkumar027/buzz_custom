@@ -33,14 +33,25 @@ class EventTicket(Document):
 		ticket_type: DF.Link
 	# end: auto-generated types
 
-	def before_validate(self):
+	def before_insert(self):
 		# Backward compat: split attendee_name into first/last if first_name not provided
-		if not self.first_name and self.attendee_name:
-			name_parts = self.attendee_name.strip().split(" ", 1)
-			self.first_name = name_parts[0]
-			if not self.last_name and len(name_parts) > 1:
-				self.last_name = name_parts[1]
+		if self.booking:
+			attendee = frappe.db.get_value(
+				"Event Booking Attendee",
+				{"parent": self.booking},
+				["full_name", "email"],
+				as_dict=True
+			)
+			if attendee:
+				full_name = attendee.get("full_name", "")
+				
+				if full_name:
+					parts = full_name.strip().split(" ", 1)
+					self.first_name = parts[0]
+					self.last_name = parts[1] if len(parts) > 1 else ""
 
+				self.attendee_name = full_name
+				self.attendee_email = attendee.get("email")
 	def validate(self):
 		self.attendee_name = f"{self.first_name or ''} {self.last_name or ''}".strip()
 

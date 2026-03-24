@@ -13,6 +13,7 @@
   "custom_fields",
   "column_break_xmfr",
   "email",
+  "mobile",
   "amount",
   "currency",
   "add_ons",
@@ -101,13 +102,21 @@
    "fieldname": "last_name",
    "fieldtype": "Data",
    "label": "Last Name"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile",
+   "options": "Phone",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-03-20 17:18:14.861918",
+ "modified": "2026-03-24 15:44:48.069449",
  "modified_by": "Administrator",
  "module": "Ticketing",
  "name": "Event Booking Attendee",

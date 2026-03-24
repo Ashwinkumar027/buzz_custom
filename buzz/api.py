@@ -354,17 +354,17 @@ def get_event_booking_data(event_route: str) -> dict:
 	data.offline_methods = offline_methods
 
 	return data
-def send_booking_sms(doc, method):
-    for attendee in doc.attendees:
-        mobile = attendee.mobile
-
-        if mobile:
-            message = "Dear Executive, You have received a call from XYZ WDMRKT"
-
-            send_sms(
-                receiver_list=[mobile],
-                msg=message
-            )
+#def send_booking_sms(doc, method):
+  #  for attendee in doc.attendees:
+ #       mobile = attendee.mobile
+#
+     #   if mobile:
+ #           message = "Dear Executive, You have received a call from XYZ WDMRKT"
+#
+   #         send_sms(
+  #              receiver_list=[mobile],
+ #             msg=message
+#            ) 
 @frappe.whitelist(allow_guest=True)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method
 def process_booking(
 	attendees: list[dict],
@@ -381,9 +381,27 @@ def process_booking(
 	is_offline: bool = False,
 	offline_payment_method: str | None = None,
 ) -> dict:
-	event_doc = frappe.get_cached_doc("Buzz Event", event)
+	event_doc = frappe.get_doc("Buzz Event", event)
 	if not event_doc.is_published:
 		frappe.throw(_("Event is not live"))
+	# existing client restriction
+	if event_doc.client_type == "Existing Client":
+		if not attendees or not attendees[0]:
+			frappe.throw("Attendee details missing")
+			
+		mobile = attendees[0].get("mobile")
+		if not mobile:
+			frappe.throw("Phone number is required")
+		mobile = mobile.strip()
+			# Check if client exists
+		existing_client = frappe.db.get_value(
+			"Existing Client",
+			{"mobile": mobile},
+			"name"
+			)
+		if not existing_client:
+			frappe.throw("You are not an allowed client for this event")
+		
 
 	is_guest = frappe.session.user == "Guest"
 
@@ -409,8 +427,7 @@ def process_booking(
 				frappe.throw(_("Phone number is required"))
 			guest_phone = guest_phone.strip()
 
-			if not guest_phone.startswith("+"):
-				frappe.throw("Phone must include country code")
+			
 
 			verify_guest_otp("phone", guest_phone, otp)
 

@@ -38,9 +38,9 @@ doc_events = {
         "on_update": "buzz.events.doctype.speaker_profile.speaker_profile.update_speaker_display_name",
     },
 
-    "Event Booking": {
-        "after_insert": "buzz.api.send_booking_sms"
-    }
+   # "Event Booking": {
+    #    "after_insert": "buzz.api.send_booking_sms"
+    #}
 }
 fixtures = [{"dt": "Role", "filters": {"name": ["in", ["Buzz User", "Frontdesk Manager"]]}}]
 

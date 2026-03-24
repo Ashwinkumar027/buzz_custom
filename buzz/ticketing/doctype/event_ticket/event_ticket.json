@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "evt-.######",
  "creation": "2025-07-22 19:49:30.385500",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -141,11 +141,11 @@
    "link_fieldname": "ticket"
   }
  ],
- "modified": "2026-03-20 17:33:26.035452",
+ "modified": "2026-03-24 12:30:12.216383",
  "modified_by": "Administrator",
  "module": "Ticketing",
  "name": "Event Ticket",
- "naming_rule": "Random",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

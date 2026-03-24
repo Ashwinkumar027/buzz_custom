@@ -14,6 +14,8 @@
   "banner_image",
   "host",
   "venue",
+  "client_type",
+  "allowed_client",
   "section_break_naqe",
   "start_date",
   "start_time",
@@ -495,6 +497,19 @@
    "fieldname": "sponsorship_proposals_close_at",
    "fieldtype": "Datetime",
    "label": "Sponsorship Proposals Close At"
+  },
+  {
+   "fieldname": "client_type",
+   "fieldtype": "Select",
+   "label": "Client Type",
+   "options": "New Client\nExisting Client",
+   "reqd": 1
+  },
+  {
+   "fieldname": "allowed_client",
+   "fieldtype": "Link",
+   "label": "Allowed Client",
+   "options": "Existing Client"
   }
  ],
  "grid_page_length": 50,
@@ -572,7 +587,7 @@
    "link_fieldname": "event"
   }
  ],
- "modified": "2026-03-12 15:25:42.269647",
+ "modified": "2026-03-23 09:50:30.063523",
  "modified_by": "Administrator",
  "module": "Events",
  "name": "Buzz Event",

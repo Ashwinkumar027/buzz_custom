@@ -23,6 +23,7 @@ class EventBookingAttendee(Document):
 		first_name: DF.Data | None
 		full_name: DF.Data | None
 		last_name: DF.Data | None
+		mobile: DF.Data
 		number_of_add_ons: DF.Int
 		parent: DF.Data
 		parentfield: DF.Data
