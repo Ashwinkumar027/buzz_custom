@@ -13,6 +13,7 @@
   "booking",
   "column_break_sqmr",
   "attendee_email",
+  "mobile",
   "ticket_type",
   "qr_code",
   "coupon_used",
@@ -129,6 +130,15 @@
    "fieldtype": "Link",
    "label": "Coupon Used",
    "options": "Buzz Coupon Code"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile",
+   "options": "Phone",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
@@ -141,7 +151,7 @@
    "link_fieldname": "ticket"
   }
  ],
- "modified": "2026-03-24 12:30:12.216383",
+ "modified": "2026-03-25 09:18:36.297576",
  "modified_by": "Administrator",
  "module": "Ticketing",
  "name": "Event Ticket",

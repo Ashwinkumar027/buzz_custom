@@ -29,6 +29,7 @@ class EventTicket(Document):
 		event: DF.Link | None
 		first_name: DF.Data | None
 		last_name: DF.Data | None
+		mobile: DF.Data
 		qr_code: DF.AttachImage | None
 		ticket_type: DF.Link
 	# end: auto-generated types
@@ -39,7 +40,7 @@ class EventTicket(Document):
 			attendee = frappe.db.get_value(
 				"Event Booking Attendee",
 				{"parent": self.booking},
-				["full_name", "email"],
+				["full_name", "email","mobile"],
 				as_dict=True
 			)
 			if attendee:
@@ -52,6 +53,7 @@ class EventTicket(Document):
 
 				self.attendee_name = full_name
 				self.attendee_email = attendee.get("email")
+				self.mobile = attendee.get("mobile")  # ✅ ADD THIS
 	def validate(self):
 		self.attendee_name = f"{self.first_name or ''} {self.last_name or ''}".strip()
 
