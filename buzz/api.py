@@ -1167,15 +1167,12 @@ def get_user_info() -> dict:
 
 
 @frappe.whitelist()
-def validate_ticket_for_checkin(ticket_id: str, event: str) -> dict:
+def validate_ticket_for_checkin(ticket_id: str) -> dict:
 	frappe.only_for("Frontdesk Manager", True)
 	if not frappe.db.exists("Event Ticket", ticket_id):
 		frappe.throw(_("Ticket not found"))
 
 	ticket_doc = frappe.get_cached_doc("Event Ticket", ticket_id)
-	# ✅ EVENT VALIDATION (IMPORTANT)
-	if ticket_doc.event != event:
-		frappe.throw(" This ticket does not belong to this event")
 
 	if ticket_doc.docstatus == 2:
 		frappe.throw(_("This ticket has been cancelled and cannot be checked in"))
@@ -1255,13 +1252,13 @@ def get_payment_details_for_ticket(ticket_id: str) -> dict | None:
 
 
 @frappe.whitelist()
-def checkin_ticket(ticket_id: str, event: str) -> dict:
+def checkin_ticket(ticket_id: str) -> dict:
 	"""Check in a ticket for today."""
 	frappe.only_for("Frontdesk Manager", True)
 
 	# Validate the ticket for check-in
 	checkin_date = frappe.utils.today()
-	validation_result = validate_ticket_for_checkin(ticket_id, event)
+	validation_result = validate_ticket_for_checkin(ticket_id)
 
 	# Create check-in record
 	checkin_doc = frappe.new_doc("Event Check In")
