@@ -10,12 +10,12 @@
   "category",
   "free_webinar",
   "medium",
+  "client_type",
+  "allowed_client",
   "column_break_cxqh",
   "banner_image",
   "host",
   "venue",
-  "client_type",
-  "allowed_client",
   "section_break_naqe",
   "start_date",
   "start_time",
@@ -587,7 +587,7 @@
    "link_fieldname": "event"
   }
  ],
- "modified": "2026-03-23 09:50:30.063523",
+ "modified": "2026-03-25 16:26:42.087736",
  "modified_by": "Administrator",
  "module": "Events",
  "name": "Buzz Event",
